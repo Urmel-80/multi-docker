@@ -3,16 +3,16 @@ services:
   - docker
 
 before_install:
-  - docker build -t Urmel-80/muti-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t urmel80/muti-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run Urmel-80/multi-docker npm test -- --coverage
+  - docker run urmel80/multi-docker npm test -- --coverage
 
 after_success:
-  - docker build -t Urmel-80/multi-client ./client
-  - docker build -t Urmel-80/multi-nginx ./nginx
-  - docker build -t Urmel-80/multi-server ./server
-  - docker build -t Urmel-80/multi-worker ./worker
+  - docker build -t urmel80/multi-client ./client
+  - docker build -t urmel80/multi-nginx ./nginx
+  - docker build -t urmel80-80/multi-server ./server
+  - docker build -t urmel80-80/multi-worker ./worker
 
 # Log into the docker client
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
