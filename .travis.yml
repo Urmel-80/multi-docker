@@ -22,3 +22,16 @@ after_success:
   - docker push urmel80/multi-nginx
   - docker push urmel80/multi-server
   - docker push urmel80/multi-worker
+
+# Deploy to AWS
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-016154154267'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
